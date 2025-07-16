@@ -1,7 +1,7 @@
 # Multi-stage build para optimizar el tamaño de la imagen
 
 # Etapa 1: Build
-FROM maven:3.9.4-openjdk-17 AS builder
+FROM maven:3.9.5-eclipse-temurin-17 AS builder
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
