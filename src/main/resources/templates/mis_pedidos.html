@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Pedidos - Piccola</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- ==================== Navbar ==================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/home}">PICCOLA 🍔</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/home}">Inicio</a></li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ROLE_USER')"><a class="nav-link" th:href="@{/mis-pedidos}">Mis Pedidos</a></li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ROLE_EMPLOYEE')"><a class="nav-link" th:href="@{/dashboard}">Dashboard</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-warning me-3" data-bs-toggle="modal" data-bs-target="#cartModal" sec:authorize="hasAuthority('ROLE_USER')"><i class="bi bi-cart-fill"></i> Carrito <span class="badge bg-danger rounded-pill" id="cart-count">0</span></button>
+                    <div sec:authorize="!isAuthenticated()"><a class="btn btn-outline-light me-2" th:href="@{/login}">Login</a><a class="btn btn-warning" th:href="@{/registro}">Registro</a></div>
+                    <div class="dropdown" sec:authorize="isAuthenticated()"><a href="#" class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown"><i class="bi bi-person-circle me-1"></i> <span sec:authentication="name"></span></a><ul class="dropdown-menu dropdown-menu-end"><li><form th:action="@{/logout}" method="post"><button class="dropdown-item" type="submit">Cerrar Sesión</button></form></li></ul></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== Main Content ==================== -->
+    <main class="container my-5">
+        <h2 class="mb-4">Mi Historial de Pedidos</h2>
+        <div th:if="${orders.isEmpty()}" class="alert alert-info">Aún no has realizado ningún pedido. ¿Qué esperas para probar nuestras hamburguesas?</div>
+        <div class="accordion" id="ordersAccordion" th:unless="${orders.isEmpty()}">
+            <div class="accordion-item" th:each="order, iter : ${orders}">
+                <h2 class="accordion-header" th:id="'heading' + ${iter.index}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="'#collapse' + ${iter.index}">
+                        <strong>Pedido #<span th:text="${order.id}"></span></strong><span class="mx-3 text-muted"> | </span><span th:text="${#temporals.format(order.orderDate, 'dd MMMM yyyy, HH:mm')} + ' hs'"></span><span class="mx-3 text-muted"> | </span>Total: <strong class="ms-1" th:text="'$' + ${#numbers.formatDecimal(order.totalAmount, 1, 2)}"></strong>
+                    </button>
+                </h2>
+                <div th:id="'collapse' + ${iter.index}" class="accordion-collapse collapse" data-bs-parent="#ordersAccordion">
+                    <div class="accordion-body">
+                        <ul class="list-group list-group-flush"><li class="list-group-item d-flex justify-content-between" th:each="item : ${order.items}"><span><strong th:text="${item.product.name}"></strong><span class="text-muted">(x<span th:text="${item.quantity}"></span>)</span></span><span th:text="'$' + ${#numbers.formatDecimal(item.price.multiply(item.quantity), 1, 2)}"></span></li></ul>
+                        <a th:href="@{/pedido/{id}/pdf(id=${order.id})}" class="btn btn-sm btn-outline-danger mt-3"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar Recibo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal del Carrito -->
+    <div class="modal fade" id="cartModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Mi Carrito de Compras</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="cart-items-container"></div><div class="modal-footer"><h5 class="me-auto">Total: <span id="cart-total" class="fw-bold">$0.00</span></h5><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button><a id="checkout-button" href="#" th:href="@{/pago}" class="btn btn-success disabled">Proceder al Pago</a></div></div></div></div>
+    
+    <!-- ==================== Footer ==================== -->
+    <footer class="site-footer mt-auto py-5 bg-dark text-white-50">
+    <div class="container text-center" data-aos="fade-up">
+        <!-- Breve descripción del local -->
+        <h5 class="text-white">PICCOLA 🍔</h5>
+        <p class="footer-description mx-auto">
+            El rincón de la hamburguesa artesanal donde la calidad y el sabor se encuentran. <br>
+            Hecho con ingredientes frescos y pasión en cada detalle.
+        </p>
+
+        <!-- Iconos de Redes Sociales -->
+        <div class="social-icons-simple mt-4">
+            <a href="#" class="social-icon-simple" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon-simple" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon-simple" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-icon-simple" title="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+        
+        <!-- Texto de Copyright -->
+        <p class="mt-4 mb-0 footer-copyright">
+            © 2025 Piccola Hamburguesería. Todos los derechos reservados.
+        </p>
+    </div>
+</footer>
+    
+    <!-- ==================== Scripts ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+</html>

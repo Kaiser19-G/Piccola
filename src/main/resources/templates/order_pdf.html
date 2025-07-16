@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Helvetica, Arial, sans-serif; color: #333; }
+        .header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px;}
+        .header h1 { margin: 0; color: #c0392b; }
+        .details p { margin: 5px 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total { text-align: right; font-weight: bold; font-size: 1.3em; margin-top: 25px; }
+        .footer { margin-top: 40px; text-align: center; color: #777; font-size: 0.9em;}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PICCOLA HAMBURGUESERÍA</h1>
+        <p>Recibo de Pedido</p>
+    </div>
+    <div class="details">
+        <p><strong>Pedido ID:</strong> #<span th:text="${order.id}"></span></p>
+        <p><strong>Cliente:</strong> <span th:text="${order.user.username}"></span></p>
+        <p><strong>Fecha:</strong> <span th:text="${#temporals.format(order.orderDate, 'dd/MM/yyyy HH:mm')}"></span></p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unit.</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${order.items}">
+                <td th:text="${item.product.name}"></td>
+                <td style="text-align:center;" th:text="${item.quantity}"></td>
+                <td style="text-align:right;" th:text="'$' + ${#numbers.formatDecimal(item.price, 1, 'POINT', 2, 'COMMA')}"></td>
+                <td style="text-align:right;" th:text="'$' + ${#numbers.formatDecimal(item.price.multiply(new java.math.BigDecimal(item.quantity)), 1, 'POINT', 2, 'COMMA')}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="total">
+        Total Pagado: <span th:text="'$' + ${#numbers.formatDecimal(order.totalAmount, 1, 'POINT', 2, 'COMMA')}"></span>
+    </div>
+    <div class="footer">
+        <p>¡Gracias por tu compra!</p>
+    </div>
+</body>
+</html>

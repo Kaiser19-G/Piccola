@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Piccola</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- ==================== Navbar ==================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/home}">PICCOLA 🍔</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/home}">Inicio</a></li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ROLE_USER')"><a class="nav-link" th:href="@{/mis-pedidos}">Mis Pedidos</a></li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ROLE_EMPLOYEE')"><a class="nav-link" th:href="@{/dashboard}">Dashboard</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown" sec:authorize="isAuthenticated()"><a href="#" class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown"><i class="bi bi-person-circle me-1"></i> <span sec:authentication="name"></span></a><ul class="dropdown-menu dropdown-menu-end"><li><form th:action="@{/logout}" method="post"><button class="dropdown-item" type="submit">Cerrar Sesión</button></form></li></ul></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- ==================== Main Content ==================== -->
+    <main class="container my-5">
+        <h1 class="mb-4">Dashboard de Empleado</h1>
+        <div class="row g-4 text-center">
+            <div class="col-md-6"><div class="card text-bg-primary h-100"><div class="card-body"><h5 class="card-title">Pedidos Totales</h5><p class="card-text display-4 fw-bold" th:text="${totalOrders}"></p></div></div></div>
+            <div class="col-md-6"><div class="card text-bg-success h-100"><div class="card-body"><h5 class="card-title">Ingresos Totales</h5><p class="card-text display-4 fw-bold" th:text="'$' + ${#numbers.formatDecimal(totalRevenue, 1, 'COMMA', 2, 'POINT')}"></p></div></div></div>
+        </div>
+        <h3 class="mt-5">Últimos Pedidos Recibidos</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark"><tr><th>ID Pedido</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead>
+                <tbody><tr th:each="order : ${recentOrders}"><td th:text="${order.id}"></td><td th:text="${order.user.username}"></td><td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></td><td th:text="'$' + ${#numbers.formatDecimal(order.totalAmount, 1, 2)}"></td><td><span class="badge text-bg-warning" th:text="${order.status}"></span></td><td><a th:href="@{/pedido/{id}/pdf(id=${order.id})}" class="btn btn-sm btn-outline-danger" title="Ver PDF"><i class="bi bi-file-pdf"></i></a></td></tr></tbody>
+            </table>
+        </div>
+    </main>
+
+   <footer class="site-footer mt-auto py-5 bg-dark text-white-50">
+    <div class="container text-center" data-aos="fade-up">
+        <!-- Breve descripción del local -->
+        <h5 class="text-white">PICCOLA 🍔</h5>
+        <p class="footer-description mx-auto">
+            El rincón de la hamburguesa artesanal donde la calidad y el sabor se encuentran. <br>
+            Hecho con ingredientes frescos y pasión en cada detalle.
+        </p>
+
+        <!-- Iconos de Redes Sociales -->
+        <div class="social-icons-simple mt-4">
+            <a href="#" class="social-icon-simple" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon-simple" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon-simple" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-icon-simple" title="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+        
+        <!-- Texto de Copyright -->
+        <p class="mt-4 mb-0 footer-copyright">
+            © 2025 Piccola Hamburguesería. Todos los derechos reservados.
+        </p>
+    </div>
+</footer>
+    
+    <!-- ==================== Scripts ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+</html>

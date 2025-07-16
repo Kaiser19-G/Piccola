@@ -1,0 +1,1055 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #ffc107 !important; /* Bootstrap 'warning' yellow */
+}
+
+/* Card styles for products */
+.product-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.product-card .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Ensure footer sticks to bottom if content is short */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* Custom button color */
+.btn-warning {
+    color: #000;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.hero-title, .display-5.fw-bold {
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.content-wrapper {
+    background-color: #fff;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=2072&auto=format&fit=crop') no-repeat center center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Sección de Características ("Por qué elegirnos") */
+.feature-box {
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: #ffc107; /* Color amarillo de la marca */
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+/* Tarjetas de Producto Mejoradas */
+.product-image-container {
+    overflow: hidden;
+}
+
+.product-image {
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1);
+}
+
+/* Sección de Testimonios */
+.testimonials-section {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1965&auto=format&fit=crop') no-repeat center center/cover;
+    background-attachment: fixed; /* Efecto Parallax */
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 15px;
+    color: white;
+}
+
+.testimonial-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #ffc107;
+    margin-bottom: 1rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    font-weight: bold;
+    color: #ffc107;
+}
+
+.filter-btn {
+    border: 1px solid #ffc107;
+    background-color: transparent;
+    color: #ffc107;
+    padding: 0.5rem 1.5rem;
+    margin: 0.25rem;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.filter-btn.active {
+    background-color: #ffc107;
+    color: #000;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+/* Animación para el filtrado de productos */
+.product-item {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.product-item.hide {
+    transform: scale(0.9);
+    opacity: 0;
+    /* Para que el elemento oculto no ocupe espacio y permita que la cuadrícula se reajuste */
+    /* Lo manejaremos con JS para mejor control de la animación */
+}
+.site-footer {
+    background-color: #212529; /* Fondo oscuro */
+}
+
+.footer-description {
+    max-width: 600px; /* Limita el ancho del texto para mejor legibilidad en pantallas grandes */
+    line-height: 1.6;
+}
+
+.social-icons-simple .social-icon-simple {
+    color: #a9a9a9; /* Un gris suave para los iconos */
+    font-size: 1.5rem; /* Un poco más grandes para que sean fáciles de clickear */
+    margin: 0 15px; /* Espacio entre los iconos */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons-simple .social-icon-simple:hover {
+    color: #ffc107; /* Amarillo de la marca al hacer hover */
+    transform: translateY(-5px); /* Una pequeña y elegante animación */
+}
+
+.footer-copyright {
+    font-size: 0.9rem;
+    color: #6c757d; /* Un gris aún más suave para el copyright */
+}
+
+/* ==============================================
+   MEJORAS Y ANIMACIONES PARA LA PÁGINA "MIS PEDIDOS"
+   ============================================== */
+
+/* Contenedor principal de la página para la animación de entrada */
+/* Buscamos el body cuando estemos en la página mis_pedidos (una técnica un poco ingeniosa sin JS) */
+body:has(#ordersAccordion) .container.my-5 {
+    animation: fadeInSlideDown 0.8s ease-out forwards;
+}
+
+@keyframes fadeInSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Estilos y Animaciones para el Acordeón --- */
+
+#ordersAccordion .accordion-item {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    overflow: hidden; /* Importante para que el borde redondeado se aplique bien */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+#ordersAccordion .accordion-item:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+#ordersAccordion .accordion-header .accordion-button {
+    font-weight: 500;
+    color: #212529;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+#ordersAccordion .accordion-header .accordion-button:hover {
+    background-color: #e9ecef;
+}
+
+/* Cuando el acordeón está expandido (no colapsado) */
+#ordersAccordion .accordion-button:not(.collapsed) {
+    background-color: #ffc107; /* Amarillo de la marca */
+    color: #212529;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+}
+
+/* Animación del icono de la flecha */
+#ordersAccordion .accordion-button::after {
+    transition: transform 0.3s ease-out;
+}
+
+/* No es necesario tocar :not(.collapsed)::after, Bootstrap ya lo maneja */
+
+
+/* --- Animación para el contenido del acordeón --- */
+
+#ordersAccordion .accordion-collapse {
+    transition: all 0.4s ease-in-out;
+}
+
+#ordersAccordion .accordion-body {
+    padding: 1.5rem;
+    background-color: #fff;
+}
+
+/* Animación en cascada para los ítems de la lista */
+#ordersAccordion .accordion-collapse.show .list-group-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+/* Aplicamos un delay diferente a cada ítem de la lista */
+#ordersAccordion .list-group-item:nth-child(1) { animation-delay: 0.1s; }
+#ordersAccordion .list-group-item:nth-child(2) { animation-delay: 0.2s; }
+#ordersAccordion .list-group-item:nth-child(3) { animation-delay: 0.3s; }
+#ordersAccordion .list-group-item:nth-child(4) { animation-delay: 0.4s; }
+/* ... puedes añadir más si un pedido puede tener muchos ítems */
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Animación para el botón de Descargar PDF --- */
+#ordersAccordion .accordion-collapse.show .btn-outline-danger {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInSlideUp 0.5s ease-out 0.5s forwards; /* 0.5s de delay */
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ==================================================
+   MEJORAS Y ANIMACIONES PARA LA PÁGINA DEL DASHBOARD
+   ================================================== */
+
+/* Animación de entrada para el contenedor principal del dashboard */
+body:has(.table-dark) .container.my-5 { /* Se activa solo si hay una tabla con clase .table-dark (el dashboard) */
+    animation: fadeInDashboard 0.7s ease-in-out forwards;
+}
+
+@keyframes fadeInDashboard {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Tarjetas de Estadísticas (KPls) --- */
+
+/* Posicionamos los íconos de fondo */
+.card.text-bg-primary, .card.text-bg-success {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: popIn 0.5s ease-out backwards;
+}
+
+/* Aplicamos delay diferente a cada tarjeta */
+.row.g-4.text-center > .col-md-6:nth-child(1) .card {
+    animation-delay: 0.2s;
+}
+.row.g-4.text-center > .col-md-6:nth-child(2) .card {
+    animation-delay: 0.4s;
+}
+
+.card.text-bg-primary:hover, .card.text-bg-success:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Creamos el pseudo-elemento para el ícono de fondo */
+.card.text-bg-primary::before, .card.text-bg-success::before {
+    font-family: 'bootstrap-icons';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.15);
+    transform: rotate(-15deg);
+    transition: transform 0.4s ease;
+}
+
+.card.text-bg-primary::before {
+    content: "\F1C7"; /* Icono de Bootstrap para 'bi-cart-check-fill' */
+}
+
+.card.text-bg-success::before {
+    content: "\F25C"; /* Icono de Bootstrap para 'bi-cash-coin' */
+}
+
+.card.text-bg-primary:hover::before, .card.text-bg-success:hover::before {
+    transform: rotate(0deg) scale(1.1);
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Tabla de Últimos Pedidos --- */
+
+.table-responsive {
+    animation: slideUpTable 0.6s ease-out 0.5s backwards;
+}
+
+@keyframes slideUpTable {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.table-hover tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1; /* Un resaltado suave */
+}
+
+/* Animación de entrada en cascada para las filas de la tabla */
+.table tbody tr {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: rowFadeIn 0.5s ease-out forwards;
+}
+
+/* Asignamos un delay progresivo a cada fila */
+.table tbody tr:nth-child(1) { animation-delay: 0.6s; }
+.table tbody tr:nth-child(2) { animation-delay: 0.7s; }
+.table tbody tr:nth-child(3) { animation-delay: 0.8s; }
+.table tbody tr:nth-child(4) { animation-delay: 0.9s; }
+.table tbody tr:nth-child(5) { animation-delay: 1.0s; }
+/* ... se pueden añadir más si se muestran más de 5 */
+
+@keyframes rowFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Botón de PDF en la tabla */
+.table .btn-outline-danger {
+    transition: all 0.2s ease-in-out;
+}
+
+.table .btn-outline-danger:hover {
+    background-color: #dc3545; /* Rojo de Bootstrap */
+    color: #fff;
+    transform: scale(1.1);
+}
+/* =======================================================
+   MEJORAS Y ANIMACIONES PARA LA PÁGINA DE PAGO (`pago.html`)
+   ======================================================= */
+
+/* Se aplica solo al contenedor principal de la página de pago */
+body:has(#checkout-form) main.container.my-5 {
+    animation: fadeInPage 0.6s ease-out forwards;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Estilo para la columna de la simulación de pago --- */
+body:has(#checkout-form) .col-md-7.col-lg-8 {
+    animation: slideInFromLeftPayment 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s backwards;
+}
+
+@keyframes slideInFromLeftPayment {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Estilo para la columna del resumen del carrito --- */
+body:has(#checkout-form) .col-md-5.col-lg-4.order-md-last {
+    animation: slideInFromRightSummary 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s backwards;
+}
+
+@keyframes slideInFromRightSummary {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Resumen del carrito mejorado */
+#checkout-summary {
+    background-color: #f8f9fa; /* Un fondo gris claro */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+}
+
+#checkout-summary .list-group-item {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #e9ecef; /* Separadores sutiles */
+    padding: 0.75rem 0;
+}
+
+#checkout-summary .list-group-item:last-child {
+    border-bottom: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #198754; /* Color verde de éxito */
+}
+
+/* --- Tarjeta de simulación de pago --- */
+body:has(#checkout-form) .col-md-7.col-lg-8 .card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Icono de fondo para reforzar la idea de seguridad */
+body:has(#checkout-form) .col-md-7.col-lg-8 .card::before {
+    font-family: 'bootstrap-icons';
+    content: "\F536"; /* Icono bi-shield-check */
+    position: absolute;
+    top: -30px;
+    left: -20px;
+    font-size: 10rem;
+    color: rgba(25, 135, 84, 0.05); /* Verde muy suave */
+    transform: rotate(15deg);
+}
+
+/* --- Botón de "Pagar Ahora" con micro-interacción --- */
+#checkout-form .btn-success {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.8rem 0;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);
+}
+
+#checkout-form .btn-success:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 15px rgba(25, 135, 84, 0.4);
+}
+
+#checkout-form .btn-success:active {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);
+}
+
+.modal-backdrop.show {
+    animation: fade-in 0.3s ease-out forwards;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Animación de entrada para el contenido del modal --- */
+.modal.fade .modal-dialog {
+    transform: scale(0.9) translateY(-20px);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1) translateY(0);
+}
+
+
+/* --- Estilo del Modal Completo --- */
+#cartModal .modal-content {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Para que el borde redondeado se aplique a todo */
+}
+
+
+/* --- Cabecera del Modal (Header) con Gradiente --- */
+#cartModal .modal-header {
+    background: linear-gradient(135deg, #343a40, #212529);
+    color: #ffc107; /* Amarillo de la marca */
+    border-bottom: none;
+    padding: 1.5rem;
+}
+
+#cartModal .modal-header .modal-title {
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 1px;
+}
+
+#cartModal .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Hace el icono 'X' blanco */
+}
+
+
+/* --- Cuerpo del Modal (Body) y los Ítems --- */
+#cartModal .modal-body {
+    padding: 0; /* Quitamos el padding para controlar los ítems */
+}
+
+#cartModal .list-group-item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f0f0f0 !important;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#cartModal .list-group-item:hover {
+    background-color: #f8f9fa;
+    transform: translateX(5px);
+}
+
+/* Animación en cascada para los productos al abrir el modal */
+.modal-backdrop {
+    /* Hacemos el fondo casi transparente, con un sutil tinte oscuro */
+    background-color: rgba(20, 20, 20, 0.2); 
+    
+    /* ¡LA MAGIA OCURRE AQUÍ! */
+    /* Aplica un filtro de desenfoque a todo lo que esté detrás */
+    -webkit-backdrop-filter: blur(5px); /* Para compatibilidad con Safari */
+    backdrop-filter: blur(5px);
+}
+
+/* Mantenemos la animación de fade-in para una transición suave */
+.modal-backdrop.show {
+    animation: fade-in 0.3s ease-out forwards;
+}
+
+/* El keyframe 'fade-in' no necesita cambios y puede quedarse como está */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+@keyframes slide-in-item {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* --- Pie del Modal (Footer) y Botones --- */
+#cartModal .modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 1.25rem 1.5rem;
+}
+
+/* Estilo del Total */
+#cartModal .modal-footer h5 {
+    color: #212529;
+}
+
+/* Botones en el footer */
+#cartModal .modal-footer .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px; /* Botones redondeados */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Botón "Proceder al Pago" */
+#cartModal .modal-footer .btn-success {
+    background-color: #198754;
+    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);
+}
+
+#cartModal .modal-footer .btn-success:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(25, 135, 84, 0.4);
+}
+
+#cartModal .modal-footer .btn-success.disabled {
+    background-color: #6c757d;
+    box-shadow: none;
+    transform: none;
+}
+
+/* ====================================================
+   ANIMACIONES EXTRAORDINARIAS PARA LA BARRA DE NAVEGACIÓN
+   ==================================================== */
+
+/* --- 1. Animación de Entrada para toda la Navbar --- */
+.navbar.sticky-top {
+    animation: slideDownNavbar 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideDownNavbar {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* --- 2. Efecto de Subrayado Animado en los Enlaces --- */
+.navbar .nav-link {
+    position: relative; /* Necesario para el pseudo-elemento */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Creamos la línea de subrayado con un pseudo-elemento ::after */
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* La línea empieza en el centro */
+    width: 0%; /* Ancho inicial cero */
+    height: 2px;
+    background-color: #ffc107; /* Amarillo de la marca */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%); /* Centra la línea */
+}
+
+/* Al pasar el ratón, la línea se expande desde el centro */
+.navbar .nav-link:hover::after {
+    width: 100%;
+}
+
+/* El enlace activo tiene el subrayado siempre visible */
+.navbar .nav-link.active::after {
+    width: 100%;
+}
+
+
+/* --- 3. Animaciones para los Botones --- */
+
+/* Botón de Carrito/Registro (el amarillo) */
+.navbar .btn-warning {
+    position: relative;
+    overflow: hidden; /* Necesario para el efecto de brillo */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar .btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+}
+
+/* Efecto de brillo que recorre el botón */
+.navbar .btn-warning::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+.navbar .btn-warning:hover::before {
+    left: 100%;
+}
+
+
+/* Botón de Login (el de contorno) */
+.navbar .btn-outline-light {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+
+/* --- 4. Animación para el Menú Desplegable --- */
+
+.dropdown .dropdown-menu {
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    /* Animación de entrada */
+    animation: dropdown-fade-in 0.3s ease-out forwards;
+    opacity: 0;
+    transform-origin: top right;
+}
+
+/* Bootstrap añade la clase .show cuando el dropdown está visible */
+.dropdown .dropdown-menu.show {
+    opacity: 1;
+}
+
+@keyframes dropdown-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ========================================================
+   ANIMACIÓN CORREGIDA Y MEJORADA PARA "AÑADIR AL CARRITO"
+   ======================================================== */
+
+/* --- Contenedor del Botón --- */
+.product-card .btn-warning {
+    position: relative; /* Contexto para posicionamiento absoluto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Espacio entre icono y texto */
+    padding: 0.5rem 1rem;
+    overflow: hidden; /* ¡Crucial! Oculta lo que se sale del botón */
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Elementos Originales (Icono '+' y Texto 'Añadir') --- */
+.product-card .btn-warning .bi-cart-plus-fill,
+.product-card .btn-warning .btn-text {
+    display: inline-block; /* Para poder aplicar transformaciones */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* --- Pseudo-elemento ::after (el icono de 'check' que aparecerá) --- */
+.product-card .btn-warning::after {
+    content: "\F209"; /* Código del icono de Bootstrap 'bi-cart-check-fill' */
+    font-family: 'bootstrap-icons';
+    font-size: 1.2em; /* Ligeramente más grande para dar énfasis */
+    
+    /* Posicionamiento absoluto para flotar sobre el botón */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    /* **LA CORRECCIÓN CLAVE**: invisible y fuera de la vista por defecto */
+    opacity: 0;
+    transform: translate(100%, -50%); /* Lo movemos a la derecha y lo centramos verticalmente */
+    
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+
+/* --- ESTADO HOVER: AQUÍ OCURRE LA MAGIA --- */
+
+.product-card .btn-warning:hover {
+    background-color: #198754; /* Verde de éxito */
+    border-color: #146c43;
+    color: #fff;
+    padding-left: 1.25rem; /* Hacemos un poco de espacio */
+    padding-right: 1.25rem;
+}
+
+/* 1. Al pasar el ratón, movemos el contenido original a la izquierda y lo desvanecemos */
+.product-card .btn-warning:hover .bi-cart-plus-fill,
+.product-card .btn-warning:hover .btn-text {
+    transform: translateX(-150%);
+    opacity: 0;
+}
+
+/* 2. Al pasar el ratón, traemos el nuevo icono desde la derecha al centro y lo hacemos visible */
+.product-card .btn-warning:hover::after {
+    transform: translate(-50%, -50%); /* El truco clásico para centrar perfectamente */
+    opacity: 1;
+}
+
+/* --- Estilos para el Modal de Promociones --- */
+.promo-modal-content {
+    background-color: #212529;
+    border: 2px solid #ffc107;
+    border-radius: 1rem;
+}
+
+.promo-modal-content .modal-header {
+    border-bottom: 1px solid #495057;
+    color: #ffc107;
+}
+
+.promo-modal-content .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+/* --- Estilos para el Chatbox Flotante --- */
+/* --- ESTILOS MEJORADOS PARA EL CHATBOX INTERACTIVO --- */
+
+.chatbox-container {
+    position: fixed; bottom: 25px; right: 25px; z-index: 1050;
+}
+.chatbox-button {
+    width: 60px; height: 60px; background-color: #ffc107; color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: all 0.3s ease;
+}
+.chatbox-button:hover {
+    transform: scale(1.1); box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+.chatbox-button.open {
+    transform: rotate(90deg) scale(0.9);
+}
+.chatbox-window {
+    position: absolute; bottom: 80px; right: 0; width: 340px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.95); visibility: hidden; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); transform-origin: bottom right;
+}
+.chatbox-window.open {
+    opacity: 1; transform: translateY(0) scale(1); visibility: visible;
+}
+.chatbox-header {
+    background: #212529; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center;
+}
+.chatbox-header .chatbox-close {
+    cursor: pointer; font-size: 1.5rem; font-weight: bold;
+}
+.chatbox-body {
+    padding: 1rem; height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem;
+}
+
+/* Estilos de los mensajes */
+.chatbox-body .message span {
+    padding: 0.75rem 1rem; display: inline-block; max-width: 85%; word-wrap: break-word;
+}
+.chatbox-body .message.received { text-align: left; }
+.chatbox-body .message.received span {
+    background: #f1f1f1; border-radius: 18px 18px 18px 5px;
+}
+.chatbox-body .message.sent { text-align: right; }
+.chatbox-body .message.sent span {
+    background: #ffc107; color: #000; border-radius: 18px 18px 5px 18px;
+}
+
+/* Indicador de "Escribiendo..." */
+.typing-indicator span i {
+    opacity: 0.5;
+    animation: blink 1.5s infinite;
+}
+@keyframes blink {
+    50% { opacity: 1; }
+}
+
+.chatbox-footer {
+    padding: 0.75rem; border-top: 1px solid #f1f1f1;
+}
+
+/* Opciones de botones */
+.chatbox-options {
+    display: flex; flex-direction: column; gap: 0.5rem;
+}
+.chat-option {
+    width: 100%; text-align: left; background: transparent; border: 1px solid #ffc107; color: #ffc107; border-radius: 50px; padding: 0.6rem 1rem; cursor: pointer; font-weight: bold; transition: all 0.2s ease;
+}
+.chat-option:hover {
+    background-color: #ffc107; color: #000;
+}
+
+/* Área de input del usuario */
+.chatbox-input-area {
+    display: flex;
+}
+.chatbox-input-area input {
+    flex-grow: 1; border: none; padding: 0.75rem; border-radius: 50px; background-color: #f1f1f1; margin-right: 0.5rem;
+}
+.chatbox-input-area input:focus {
+    outline: none; box-shadow: 0 0 0 2px #ffc107;
+}
+.chatbox-input-area button {
+    background-color: #ffc107; border: none; color: #000; border-radius: 50px; padding: 0.5rem 1rem; font-weight: bold; cursor: pointer;
+}
+/* ========================================================
+   ESTILOS PARA LA PÁGINA DE PAGO CON YAPE
+   ======================================================== */
+
+.payment-card {
+    border: none;
+    background-color: #fff;
+}
+
+.payment-card-content {
+    animation: fadeInSlideUp 0.8s ease-out backwards;
+}
+
+.qr-container {
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 1rem;
+    display: inline-block;
+}
+
+.total-amount-display {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 50px;
+    display: inline-block;
+    border: 1px solid #dee2e6;
+}
+
+.instructions-list {
+    counter-reset: step-counter;
+    list-style: none;
+    padding-left: 0;
+}
+
+.instructions-list li {
+    counter-increment: step-counter;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.instructions-list .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: #6c2be2; /* Color de Yape */
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.btn-yape {
+    background-color: #6c2be2;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-yape:hover {
+    background-color: #5a24b3;
+    color: white;
+    transform: scale(1.02);
+}

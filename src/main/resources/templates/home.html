@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Piccola - Las Mejores Hamburguesas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- AOS - Animate On Scroll Library (Para las animaciones) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts para un look más profesional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Tu Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ==================== Barra de Navegación (Corregida) ==================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/home}">PICCOLA 🍔</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/home}">Inicio</a></li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ROLE_USER')"><a class="nav-link" th:href="@{/mis-pedidos}">Mis Pedidos</a></li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ROLE_EMPLOYEE')"><a class="nav-link" th:href="@{/dashboard}">Dashboard</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-warning me-3" data-bs-toggle="modal" data-bs-target="#cartModal" sec:authorize="hasAuthority('ROLE_USER')"><i class="bi bi-cart-fill"></i> Carrito <span class="badge bg-danger rounded-pill" id="cart-count">0</span></button>
+                    <div sec:authorize="!isAuthenticated()"><a class="btn btn-outline-light me-2" th:href="@{/login}">Login</a><a class="btn btn-warning" th:href="@{/registro}">Registro</a></div>
+                    <div class="dropdown" sec:authorize="isAuthenticated()"><a href="#" class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown"><i class="bi bi-person-circle me-1"></i> <span sec:authentication="name"></span></a><ul class="dropdown-menu dropdown-menu-end"><li><form th:action="@{/logout}" method="post"><button class="dropdown-item" type="submit">Cerrar Sesión</button></form></li></ul></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<!-- ==============================================
+     MODAL DE BIENVENIDA CON CARRUSEL DE VIDEOS
+     VERSIÓN FINAL Y ROBUSTA
+     ============================================== -->
+<div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content promo-modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="promoModalLabel">🔥 ¡Nuestras Promociones Imperdibles!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Video 1 -->
+                        <div class="carousel-item active">
+                            <div class="ratio ratio-16x9">
+                                <!-- CAMBIO A www.youtube-nocookie.com -->
+                                 <iframe src="https://www.youtube.com/embed/4hpb5zHlu6A?autoplay=1&mute=1&loop=1&playlist=4hpb5zHlu6A" width="100%" height="750px" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                            </div>
+                        </div>
+                        <!-- Video 2 -->
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <!-- CAMBIO A www.youtube-nocookie.com -->
+                                 <iframe id="videoIframe" 
+                    src="https://www.youtube.com/embed/ZcWseVVHvh4?autoplay=1&mute=1" 
+                    title="Video" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Controles del carrusel (no cambian) -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ==================== Hero Section (Nueva) ==================== -->
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content text-center text-white">
+            <h1 class="display-1 fw-bolder hero-title" data-aos="fade-down">EL SABOR LEGENDARIO</h1>
+            <p class="lead fs-3" data-aos="fade-up" data-aos-delay="200">HAMBURGUESAS ARTESANALES QUE NO PODRÁS OLVIDAR</p>
+            <a href="#menu" class="btn btn-warning btn-lg mt-3" data-aos="zoom-in" data-aos-delay="400">VER EL MENÚ</a>
+        </div>
+    </header>
+
+    <!-- ==================== Contenido Principal Mejorado ==================== -->
+    <main class="content-wrapper">
+
+        <!-- Sección de Características (Nueva) -->
+        <section class="container my-5 py-5 text-center">
+            <h2 class="display-5 fw-bold mb-5" data-aos="fade-up">¿QUÉ NOS HACE ÚNICOS?</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="feature-box"><i class="bi bi-droplet-half feature-icon"></i><h3 class="fs-4 fw-bold">Ingredientes Frescos</h3><p class="text-muted">Seleccionamos los mejores ingredientes cada día para garantizar una explosión de sabor en cada mordida.</p></div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-box"><i class="bi bi-fire feature-icon"></i><h3 class="fs-4 fw-bold">Receta Secreta</h3><p class="text-muted">Nuestra combinación única de especias y salsas ha sido perfeccionada por generaciones. Es un secreto que amarás.</p></div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left" data-aos-delay="300">
+                    <div class="feature-box"><i class="bi bi-bicycle feature-icon"></i><h3 class="fs-4 fw-bold">Entrega Rápida</h3><p class="text-muted">Recibe tu pedido caliente y listo para disfrutar en tiempo récord. Tu satisfacción es nuestra prioridad.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección del Menú de Productos (Corregida y Mejorada) -->
+       <section id="menu" class="container my-5">
+    <div class="text-center mb-5" data-aos="zoom-in">
+        <h2 class="display-5 fw-bold">NUESTRO MENÚ ESTRELLA</h2>
+        <p class="lead text-muted">Filtra por categoría para encontrar tu antojo perfecto.</p>
+    </div>
+
+    <!-- Contenedor para los botones de filtro (se generarán con JS) -->
+    <div id="menu-filters" class="text-center mb-4" data-aos="fade-up">
+        <!-- Los botones del filtro se insertarán aquí por arte de magia (JS) -->
+    </div>
+
+    <!-- Contenedor de la cuadrícula de productos -->
+    <div id="product-grid"> <!-- Este ID es importante -->
+        <div th:if="${param.error}" class="alert alert-danger" th:text="${param.error}"></div>
+        <!-- Le añadimos una clase 'product-item' a cada columna para poder seleccionarlas con JS -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <div class="col product-item" th:each="product, iter : ${products}" 
+                 data-aos="fade-up" th:attrappend="data-aos-delay=${iter.index * 50}">
+                
+                <div class="card h-100 shadow-sm product-card">
+                    <div class="product-image-container"><img th:src="@{${product.imageUrl}}" class="card-img-top product-image" th:alt="${product.name}"></div>
+                    <div class="card-body d-flex flex-column">
+                        <!-- El 'product-name' nos servirá para deducir la categoría -->
+                        <h5 class="card-title fw-bold product-name" th:text="${product.name}"></h5>
+                        <p class="card-text text-muted" th:text="${product.description}"></p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                            <p class="card-text fs-4 fw-bold text-success mb-0" th:text="'$' + ${#numbers.formatDecimal(product.price, 1, 2)}"></p>
+                            <button class="btn btn-warning rounded-pill" sec:authorize="hasAuthority('ROLE_USER')"
+                                    th:attr="onclick=|addToCart(${product.id}, '${#strings.escapeJavaScript(product.name)}', ${product.price}, '${product.imageUrl}')|">
+                                <i class="bi bi-cart-plus-fill"></i> <span class="btn-text">Añadir</span>
+                            </button>
+                            <a th:href="@{/login}" class="btn btn-outline-secondary rounded-pill" sec:authorize="!isAuthenticated()" title="Inicia sesión para pedir"><i class="bi bi-cart-plus-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Sección de Testimonios (Nueva) -->
+        <section class="testimonials-section py-5">
+            <div class="container text-center">
+                <h2 class="display-5 fw-bold mb-5 text-white" data-aos="fade-up">LO QUE DICEN NUESTROS CLIENTES</h2>
+                <div class="row g-4">
+                    <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
+                        <div class="testimonial-card"><img src="https://i.pravatar.cc/100?img=1" alt="Cliente 1" class="testimonial-img"><p class="testimonial-text">"¡Increíble! La Doble Bacon es simplemente la mejor hamburguesa que he probado."</p><h5 class="testimonial-author">- Carlos R.</h5></div>
+                    </div>
+                    <div class="col-md-4" data-aos="flip-up" data-aos-delay="200">
+                        <div class="testimonial-card"><img src="https://i.pravatar.cc/100?img=32" alt="Cliente 2" class="testimonial-img"><p class="testimonial-text">"El servicio es súper rápido y las hamburguesas llegan calientes y deliciosas."</p><h5 class="testimonial-author">- Ana G.</h5></div>
+                    </div>
+                    <div class="col-md-4" data-aos="flip-right" data-aos-delay="300">
+                        <div class="testimonial-card"><img src="https://i.pravatar.cc/100?img=11" alt="Cliente 3" class="testimonial-img"><p class="testimonial-text">"He probado muchas, pero Piccola tiene un sabor único. ¡100% recomendados!"</p><h5 class="testimonial-author">- Javier M.</h5></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- ==================== Modal y Toast (sin cambios) ==================== -->
+    <div class="modal fade" id="cartModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Mi Carrito de Compras</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="cart-items-container"></div><div class="modal-footer"><h5 class="me-auto">Total: <span id="cart-total" class="fw-bold">$0.00</span></h5><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button><a id="checkout-button" href="#" th:href="@{/pago}" class="btn btn-success disabled">Proceder al Pago</a></div></div></div></div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="cartToast" class="toast" role="alert"><div class="toast-header bg-success text-white"><strong class="me-auto">¡Éxito!</strong><button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button></div><div class="toast-body">Producto añadido al carrito.</div></div></div>
+    
+    <!-- ==================== Footer (Corregido) ==================== -->
+   <footer class="site-footer mt-auto py-5 bg-dark text-white-50">
+    <div class="container text-center" data-aos="fade-up">
+        <!-- Breve descripción del local -->
+        <h5 class="text-white">PICCOLA 🍔</h5>
+        <p class="footer-description mx-auto">
+            El rincón de la hamburguesa artesanal donde la calidad y el sabor se encuentran. <br>
+            Hecho con ingredientes frescos y pasión en cada detalle.
+        </p>
+
+        <!-- Iconos de Redes Sociales -->
+        <div class="social-icons-simple mt-4">
+            <a href="#" class="social-icon-simple" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon-simple" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon-simple" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-icon-simple" title="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+        
+        <!-- Texto de Copyright -->
+        <p class="mt-4 mb-0 footer-copyright">
+            © 2025 Piccola Hamburguesería. Todos los derechos reservados.
+        </p>
+    </div>
+</footer>
+
+    <!-- ==================== Scripts (con AOS añadido) ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/menufilter.js}"></script>
+    <script th:src="@{/js/promo.js}"></script>
+    <script src="js/chatbox.js"></script>
+    <!-- AOS - Animate on Scroll Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar la librería de animaciones
+        AOS.init({
+            duration: 800, // Duración de la animación en milisegundos
+            once: true,    // La animación solo ocurre una vez
+            offset: 100,   // Desplazamiento desde el borde de la ventana antes de que se active la animación
+        });
+    </script>
+</body>
+</html>
