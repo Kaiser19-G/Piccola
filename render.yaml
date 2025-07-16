@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: piccola-app
+    env: java
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/piccola-app.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DDL_AUTO
+        value: update
+      - key: SHOW_SQL
+        value: false
+      - key: LOG_LEVEL
+        value: INFO
+      # Railway MySQL variables (configurar manualmente en Render)
+      - key: MYSQLHOST
+        value: yamanote.proxy.rlwy.net
+      - key: MYSQLPORT
+        value: 28411
+      - key: MYSQLDATABASE
+        value: railway
+      - key: MYSQLUSER
+        value: root
+      - key: MYSQLPASSWORD
+        value: pFdxybzAvYZDjdvsIyURmKakkWKycbQE
