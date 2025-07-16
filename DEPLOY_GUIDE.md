@@ -12,7 +12,7 @@
 ### 1. Subir código a GitHub
 ```bash
 git add .
-git commit -m "Configure for Railway MySQL + Render deployment"
+git commit -m "Configure Docker deployment for Render + Railway"
 git push origin main
 ```
 
@@ -22,9 +22,12 @@ git push origin main
 3. Conecta tu repositorio GitHub `Kaiser19-G/Piccola`
 4. Configura:
    - **Name**: `piccola-app`
-   - **Environment**: `Java`
-   - **Build Command**: `mvn clean package -DskipTests`
-   - **Start Command**: `java -jar target/piccola-app.jar`
+   - **Environment**: `Docker` ⚠️ **SELECCIONA DOCKER DE LA LISTA**
+   - **Build Command**: (déjalo vacío, Docker se encarga)
+   - **Start Command**: (déjalo vacío, Docker se encarga)
+   - **Dockerfile Path**: `Dockerfile` (debe detectarse automáticamente)
+
+> **IMPORTANTE**: Cuando veas la lista de lenguajes (Elixir, Node.js, Python, etc.), selecciona **Docker**. Spring Boot se ejecutará dentro del contenedor Docker.
 
 ### 3. Configurar Variables de Entorno en Render
 Agrega estas variables en el dashboard de Render:
