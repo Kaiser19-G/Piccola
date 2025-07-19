@@ -1,18 +1,19 @@
+
 # 🚀 Guía de Despliegue: Piccola en Render + Railway
 
 ## ✅ **Base de datos ya configurada en Railway**
-- **Host**: yamanote.proxy.rlwy.net
-- **Puerto**: 28411
+- **Host Público**: tramway.proxy.rlwy.net
+- **Puerto Público**: 39753
 - **Base de datos**: railway
 - **Usuario**: root
-- **Contraseña**: pFdxybzAvYZDjdvsIyURmKakkWKycbQE
+- **Contraseña**: skkmEjtWNnptiMCADabDIjjaHTUAdgax
 
 ## 📋 **Pasos para desplegar en Render**
 
 ### 1. Subir código a GitHub
 ```bash
 git add .
-git commit -m "Configure Docker deployment for Render + Railway"
+git commit -m "Update Railway MySQL credentials"
 git push origin main
 ```
 
@@ -34,11 +35,11 @@ Agrega estas variables en el dashboard de Render:
 
 ```
 SPRING_PROFILES_ACTIVE=prod
-MYSQLHOST=yamanote.proxy.rlwy.net
-MYSQLPORT=28411
+MYSQLHOST=tramway.proxy.rlwy.net
+MYSQLPORT=39753
 MYSQLDATABASE=railway
 MYSQLUSER=root
-MYSQLPASSWORD=pFdxybzAvYZDjdvsIyURmKakkWKycbQE
+MYSQLPASSWORD=skkmEjtWNnptiMCADabDIjjaHTUAdgax
 DDL_AUTO=update
 SHOW_SQL=false
 LOG_LEVEL=INFO
@@ -59,7 +60,7 @@ EMAIL_PASSWORD=eblj_rrbc_unzc_vegr
 
 ## 🛠️ **Troubleshooting**
 - **Error de conexión**: Verifica que las variables de entorno estén correctas
-- **Puerto incorrecto**: Asegúrate de usar el puerto 28411 (no 3306)
+- **Puerto incorrecto**: Asegúrate de usar el puerto 39753 (no 3306)
 - **Timeout**: Railway puede tardar en responder, es normal
 
 ## 🎯 **URLs importantes**
